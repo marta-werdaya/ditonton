@@ -2,22 +2,25 @@ import 'package:equatable/equatable.dart';
 
 class Tv extends Equatable {
   Tv({
+    required this.backdropPath,
     required this.genreIds,
     required this.id,
+    required this.originalName,
     required this.posterPath,
-    required this.name,
   });
 
+  final String? backdropPath;
   final List<int> genreIds;
   final int id;
-  final String name;
-  final String? posterPath;
+  final String originalName;
+  final String posterPath;
 
   @override
   List<Object?> get props => [
+        backdropPath,
         genreIds,
         id,
-        name,
+        originalName,
         posterPath,
       ];
 }
