@@ -7,6 +7,7 @@ class Tv extends Equatable {
     required this.id,
     required this.originalName,
     required this.posterPath,
+    required this.overview,
   });
 
   final String? backdropPath;
@@ -14,6 +15,7 @@ class Tv extends Equatable {
   final int id;
   final String originalName;
   final String posterPath;
+  String? overview;
 
   @override
   List<Object?> get props => [
@@ -22,5 +24,6 @@ class Tv extends Equatable {
         id,
         originalName,
         posterPath,
+        overview,
       ];
 }

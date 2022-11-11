@@ -1,13 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:flutter/material.dart';
 
-class MovieCard extends StatelessWidget {
-  final Movie movie;
+import '../../domain/entities/tv.dart';
 
-  MovieCard(this.movie);
+class MovieCard<T> extends StatelessWidget {
+  final dynamic film;
+
+  MovieCard(this.film);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class MovieCard extends StatelessWidget {
           Navigator.pushNamed(
             context,
             MovieDetailPage.ROUTE_NAME,
-            arguments: movie.id,
+            arguments: film.id,
           );
         },
         child: Stack(
@@ -35,14 +36,14 @@ class MovieCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      movie.title ?? '-',
+                      (film is Tv) ? film.originalName : film.title ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,
                     ),
                     SizedBox(height: 16),
                     Text(
-                      movie.overview ?? '-',
+                      film.overview ?? '-',
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -57,7 +58,7 @@ class MovieCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                  imageUrl: '$BASE_IMAGE_URL${film.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),

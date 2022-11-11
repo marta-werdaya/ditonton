@@ -9,6 +9,7 @@ class TvModel extends Equatable {
     required this.id,
     required this.originalTitle,
     required this.posterPath,
+    required this.overview,
   });
 
   final String? backdropPath;
@@ -16,14 +17,15 @@ class TvModel extends Equatable {
   final int id;
   final String originalTitle;
   final String? posterPath;
+  final String? overview;
 
   factory TvModel.fromJson(Map<String, dynamic> json) => TvModel(
-        backdropPath: json["backdrop_path"],
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
-        id: json["id"],
-        originalTitle: json["original_name"],
-        posterPath: json["poster_path"],
-      );
+      backdropPath: json["backdrop_path"],
+      genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+      id: json["id"],
+      originalTitle: json["original_name"],
+      posterPath: json["poster_path"],
+      overview: json['overview']);
 
   Map<String, dynamic> toJson() => {
         "backdrop_path": backdropPath,
@@ -31,6 +33,7 @@ class TvModel extends Equatable {
         "id": id,
         "original_name": originalTitle,
         "poster_path": posterPath,
+        "overview": overview,
       };
 
   Tv toEntity() {
@@ -40,6 +43,7 @@ class TvModel extends Equatable {
       id: this.id,
       originalName: this.originalTitle,
       posterPath: this.posterPath!,
+      overview: this.overview,
     );
   }
 
@@ -50,5 +54,6 @@ class TvModel extends Equatable {
         id,
         originalTitle,
         posterPath,
+        overview,
       ];
 }

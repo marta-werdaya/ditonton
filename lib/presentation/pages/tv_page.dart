@@ -1,5 +1,8 @@
 import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/presentation/pages/now_playing_page.dart';
+import 'package:ditonton/presentation/pages/popular_tv_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
+import 'package:ditonton/presentation/pages/top_rated_tv_page.dart';
 import 'package:ditonton/presentation/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -50,7 +53,8 @@ class _TvPageState extends State<TvPage> {
             children: [
               BuildSubHeading(
                 title: 'Popular',
-                onTap: () {},
+                onTap: () =>
+                    Navigator.pushNamed(context, PopularTvPage.ROUTE_NAME),
               ),
               Consumer<TvListNotifier>(builder: (context, data, child) {
                 final state = data.popularState;
@@ -66,7 +70,8 @@ class _TvPageState extends State<TvPage> {
               }),
               BuildSubHeading(
                 title: 'Now Playing',
-                onTap: () {},
+                onTap: () =>
+                    Navigator.pushNamed(context, NowPlayingTvPage.ROUTE_NAME),
               ),
               Consumer<TvListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
@@ -82,7 +87,8 @@ class _TvPageState extends State<TvPage> {
               }),
               BuildSubHeading(
                 title: 'Top Rated',
-                onTap: () {},
+                onTap: () =>
+                    Navigator.pushNamed(context, TopRatedTvPage.ROUTE_NAME),
               ),
               Consumer<TvListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedState;
