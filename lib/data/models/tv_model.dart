@@ -21,7 +21,7 @@ class TvModel extends Equatable {
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
-        originalTitle: json["original_title"],
+        originalTitle: json["original_name"],
         posterPath: json["poster_path"],
       );
 
@@ -29,7 +29,7 @@ class TvModel extends Equatable {
         "backdrop_path": backdropPath,
         "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
         "id": id,
-        "original_title": originalTitle,
+        "original_name": originalTitle,
         "poster_path": posterPath,
       };
 
