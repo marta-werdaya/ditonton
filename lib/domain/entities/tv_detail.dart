@@ -8,7 +8,11 @@ class TvDetail extends Equatable {
     required this.id,
     required this.name,
     required this.originalName,
+    required this.overview,
     required this.posterPath,
+    required this.runtime,
+    required this.voteAverage,
+    required this.voteCount,
   });
 
   final String? backdropPath;
@@ -16,7 +20,11 @@ class TvDetail extends Equatable {
   final int id;
   final String name;
   final String originalName;
+  final String overview;
   final String posterPath;
+  final int runtime;
+  final double voteAverage;
+  final int voteCount;
 
   @override
   List<Object?> get props => [
@@ -25,6 +33,10 @@ class TvDetail extends Equatable {
         id,
         name,
         originalName,
+        overview,
         posterPath,
+        runtime,
+        voteAverage,
+        voteCount,
       ];
 }

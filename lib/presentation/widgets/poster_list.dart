@@ -5,6 +5,7 @@ import '../../common/constants.dart';
 import '../../domain/entities/movie.dart';
 import '../../domain/entities/tv.dart';
 import '../pages/movie_detail_page.dart';
+import '../pages/tv_detail_page.dart';
 
 class PosterList<T> extends StatelessWidget {
   final List<T> posters;
@@ -32,7 +33,7 @@ class PosterList<T> extends StatelessWidget {
                     : (poster is Tv)
                         ? Navigator.pushNamed(
                             context,
-                            MovieDetailPage.ROUTE_NAME,
+                            TvDetailPage.ROUTE_NAME,
                             arguments: poster.id,
                           )
                         : '';

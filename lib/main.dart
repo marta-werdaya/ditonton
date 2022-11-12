@@ -23,6 +23,8 @@ import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
 import 'presentation/pages/popular_tv_page.dart';
+import 'presentation/pages/tv_detail_page.dart';
+import 'presentation/provider/tv_detail_notifier.dart';
 
 void main() {
   di.init();
@@ -42,6 +44,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieDetailNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvDetailNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieSearchNotifier>(),
@@ -84,6 +89,12 @@ class MyApp extends StatelessWidget {
               final id = settings.arguments as int;
               return MaterialPageRoute(
                 builder: (_) => MovieDetailPage(id: id),
+                settings: settings,
+              );
+            case TvDetailPage.ROUTE_NAME:
+              final id = settings.arguments as int;
+              return MaterialPageRoute(
+                builder: (_) => TvDetailPage(id: id),
                 settings: settings,
               );
             case TvPage.ROUTE_NAME:
