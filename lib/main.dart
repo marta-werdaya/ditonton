@@ -25,6 +25,7 @@ import 'package:ditonton/injection.dart' as di;
 import 'presentation/pages/popular_tv_page.dart';
 import 'presentation/pages/tv_detail_page.dart';
 import 'presentation/provider/tv_detail_notifier.dart';
+import 'presentation/provider/tv_search_notifier.dart';
 
 void main() {
   di.init();
@@ -50,6 +51,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieSearchNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvSearchNotifier>(),
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TopRatedMoviesNotifier>(),

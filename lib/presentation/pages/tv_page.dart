@@ -39,7 +39,12 @@ class _TvPageState extends State<TvPage> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => SearchPage.tv(),
+                ),
+              );
             },
             icon: Icon(Icons.search),
           )
