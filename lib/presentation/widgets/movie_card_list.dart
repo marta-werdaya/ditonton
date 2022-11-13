@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/common/constants.dart';
+import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/pages/movie_detail_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/tv.dart';
+import '../pages/tv_detail_page.dart';
 
 class MovieCard<T> extends StatelessWidget {
   final dynamic film;
@@ -16,11 +18,19 @@ class MovieCard<T> extends StatelessWidget {
       margin: const EdgeInsets.symmetric(vertical: 4),
       child: InkWell(
         onTap: () {
-          Navigator.pushNamed(
-            context,
-            MovieDetailPage.ROUTE_NAME,
-            arguments: film.id,
-          );
+          if (T == Movie) {
+            Navigator.pushNamed(
+              context,
+              MovieDetailPage.ROUTE_NAME,
+              arguments: film.id,
+            );
+          } else {
+            Navigator.pushNamed(
+              context,
+              TvDetailPage.ROUTE_NAME,
+              arguments: film.id,
+            );
+          }
         },
         child: Stack(
           alignment: Alignment.bottomLeft,
@@ -36,7 +46,7 @@ class MovieCard<T> extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      (film is Tv) ? film.originalName : film.title ?? '',
+                      (film is Tv) ? film.name : film.title ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,

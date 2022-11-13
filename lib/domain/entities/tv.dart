@@ -6,15 +6,24 @@ class Tv extends Equatable {
     required this.genreIds,
     required this.id,
     required this.originalName,
+    required this.name,
     required this.posterPath,
     required this.overview,
   });
 
-  final String? backdropPath;
-  final List<int> genreIds;
-  final int id;
-  final String originalName;
-  final String posterPath;
+  Tv.watchlist({
+    required this.id,
+    required this.overview,
+    required this.posterPath,
+    required this.name,
+  });
+
+  String? backdropPath;
+  List<int>? genreIds;
+  int id;
+  String? name;
+  String? originalName;
+  String? posterPath;
   String? overview;
 
   @override

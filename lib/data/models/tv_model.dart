@@ -7,6 +7,7 @@ class TvModel extends Equatable {
     required this.backdropPath,
     required this.genreIds,
     required this.id,
+    required this.name,
     required this.originalTitle,
     required this.posterPath,
     required this.overview,
@@ -16,6 +17,7 @@ class TvModel extends Equatable {
   final List<int> genreIds;
   final int id;
   final String originalTitle;
+  final String name;
   final String? posterPath;
   final String? overview;
 
@@ -24,6 +26,7 @@ class TvModel extends Equatable {
       genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
       id: json["id"],
       originalTitle: json["original_name"],
+      name: json["name"],
       posterPath: json["poster_path"],
       overview: json['overview']);
 
@@ -33,6 +36,7 @@ class TvModel extends Equatable {
         "id": id,
         "original_name": originalTitle,
         "poster_path": posterPath,
+        "name": name,
         "overview": overview,
       };
 
@@ -42,6 +46,7 @@ class TvModel extends Equatable {
       genreIds: this.genreIds,
       id: this.id,
       originalName: this.originalTitle,
+      name: this.name,
       posterPath: this.posterPath!,
       overview: this.overview,
     );
@@ -53,6 +58,7 @@ class TvModel extends Equatable {
         genreIds,
         id,
         originalTitle,
+        name,
         posterPath,
         overview,
       ];

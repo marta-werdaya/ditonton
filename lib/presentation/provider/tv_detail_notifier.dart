@@ -3,6 +3,9 @@ import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/domain/entities/tv_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_detail.dart';
 import 'package:ditonton/domain/usecases/get_tv_recomendations.dart';
+import 'package:ditonton/domain/usecases/get_watch_list_status_tv.dart';
+import 'package:ditonton/domain/usecases/remove_watch_list_tv.dart';
+import 'package:ditonton/domain/usecases/save_watch_list_tv.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,10 +15,16 @@ class TvDetailNotifier extends ChangeNotifier {
 
   final GetTvDetail getTvDetail;
   final GetTvRecommendations getTvRecommendations;
+  final GetWatchListStatusTv getWatchListStatus;
+  final SaveWatchlistTv saveWatchlist;
+  final RemoveWatchlistTv removeWatchlist;
 
   TvDetailNotifier({
     required this.getTvDetail,
     required this.getTvRecommendations,
+    required this.getWatchListStatus,
+    required this.saveWatchlist,
+    required this.removeWatchlist,
   });
 
   late TvDetail _tv;
@@ -67,42 +76,42 @@ class TvDetailNotifier extends ChangeNotifier {
     );
   }
 
-  // String _watchlistMessage = '';
-  // String get watchlistMessage => _watchlistMessage;
+  String _watchlistMessage = '';
+  String get watchlistMessage => _watchlistMessage;
 
-  // Future<void> addWatchlist(MovieDetail movie) async {
-  //   final result = await saveWatchlist.execute(movie);
+  Future<void> addWatchlist(TvDetail movie) async {
+    final result = await saveWatchlist.execute(movie);
 
-  //   await result.fold(
-  //     (failure) async {
-  //       _watchlistMessage = failure.message;
-  //     },
-  //     (successMessage) async {
-  //       _watchlistMessage = successMessage;
-  //     },
-  //   );
+    await result.fold(
+      (failure) async {
+        _watchlistMessage = failure.message;
+      },
+      (successMessage) async {
+        _watchlistMessage = successMessage;
+      },
+    );
 
-  //   await loadWatchlistStatus(movie.id);
-  // }
+    await loadWatchlistStatus(movie.id);
+  }
 
-  // Future<void> removeFromWatchlist(MovieDetail movie) async {
-  //   final result = await removeWatchlist.execute(movie);
+  Future<void> removeFromWatchlist(TvDetail movie) async {
+    final result = await removeWatchlist.execute(movie);
 
-  //   await result.fold(
-  //     (failure) async {
-  //       _watchlistMessage = failure.message;
-  //     },
-  //     (successMessage) async {
-  //       _watchlistMessage = successMessage;
-  //     },
-  //   );
+    await result.fold(
+      (failure) async {
+        _watchlistMessage = failure.message;
+      },
+      (successMessage) async {
+        _watchlistMessage = successMessage;
+      },
+    );
 
-  //   await loadWatchlistStatus(movie.id);
-  // }
+    await loadWatchlistStatus(movie.id);
+  }
 
-  // Future<void> loadWatchlistStatus(int id) async {
-  //   final result = await getWatchListStatus.execute(id);
-  //   _isAddedtoWatchlist = result;
-  //   notifyListeners();
-  // }
+  Future<void> loadWatchlistStatus(int id) async {
+    final result = await getWatchListStatus.execute(id);
+    _isAddedtoWatchlist = result;
+    notifyListeners();
+  }
 }
