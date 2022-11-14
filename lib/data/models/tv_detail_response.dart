@@ -49,21 +49,6 @@ class TvDetailResponse extends Equatable {
         voteCount: json["vote_count"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "backdrop_path": backdropPath,
-        "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
-        "id": id,
-        "original_name": originalName,
-        "overview": overview,
-        "popularity": popularity,
-        "poster_path": posterPath,
-        "status": status,
-        "name": name,
-        "episode_run_time": runtime,
-        "vote_average": voteAverage,
-        "vote_count": voteCount,
-      };
-
   TvDetail toEntity() {
     return TvDetail(
       backdropPath: this.backdropPath,

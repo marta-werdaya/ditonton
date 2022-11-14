@@ -1,4 +1,5 @@
 import 'package:ditonton/data/models/movie_table.dart';
+import 'package:ditonton/data/models/tv_model.dart';
 import 'package:ditonton/data/models/tv_table.dart';
 import 'package:ditonton/domain/entities/genre.dart';
 import 'package:ditonton/domain/entities/movie.dart';
@@ -59,6 +60,16 @@ final testWatchlistMovie = Movie.watchlist(
   posterPath: 'posterPath',
   overview: 'overview',
 );
+final testTvModel = TvModel(
+  backdropPath: 'backdropPath',
+  genreIds: [1, 2, 1],
+  id: 1,
+  name: 'name',
+  originalName: 'originalName',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
 final testWatchlistTv = Tv.watchlist(
   id: 1,
   name: 'name',
@@ -72,12 +83,30 @@ final testMovieTable = MovieTable(
   posterPath: 'posterPath',
   overview: 'overview',
 );
+
 final testTvTable = TvTable(
   id: 1,
   name: 'name',
   posterPath: 'posterPath',
   overview: 'overview',
 );
+
+final testTvModelMap = {
+  'backdrop_path': 'backdropPath',
+  'genre_ids': [1, 2, 1],
+  'id': 1,
+  'name': 'name',
+  'original_name': 'originalName',
+  'poster_path': 'posterPath',
+  'overview': 'overview',
+};
+
+final testMovieTableMap = {
+  'id': 1,
+  'title': 'title',
+  'posterPath': 'posterPath',
+  'overview': 'overview',
+};
 
 final testMovieMap = {
   'id': 1,

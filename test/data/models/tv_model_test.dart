@@ -2,6 +2,8 @@ import 'package:ditonton/data/models/tv_model.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../../dummy_data/dummy_objects.dart';
+
 void main() {
   final tTvModel = TvModel(
     backdropPath: 'backdropPath',
@@ -26,5 +28,14 @@ void main() {
   test('should be a subclass of Tv entity', () async {
     final result = tTvModel.toEntity();
     expect(result, tTv);
+  });
+
+  group('toJson', () {
+    test('should return a JSON map containing proper data', () async {
+      // act
+      final result = testTvModel.toJson();
+      // assert
+      expect(result, testTvModelMap);
+    });
   });
 }

@@ -49,4 +49,15 @@ void main() {
     expect(provider.message, "Can't get data");
     expect(listenerCallCount, 2);
   });
+
+  test('should update _watchlistState when it\'s empty', () async {
+    // arrange
+    when(mockGetWatchlistMovies.execute()).thenAnswer((_) async => Right([]));
+    // act
+    await provider.fetchWatchlistMovies();
+    // assert
+    expect(provider.watchlistState, RequestState.Empty);
+    expect(provider.watchlistMovies, []);
+    expect(listenerCallCount, 2);
+  });
 }
