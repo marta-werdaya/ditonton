@@ -181,6 +181,39 @@ class DetailContent extends StatelessWidget {
                             ),
                             SizedBox(height: 16),
                             Text(
+                              'Season',
+                              style: kHeading6,
+                            ),
+                            Container(
+                              height: 150,
+                              margin: EdgeInsets.only(bottom: 32),
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: tv.seasons.length,
+                                  itemBuilder: (context, index) {
+                                    var posterPath =
+                                        tv.seasons[index].posterPath;
+                                    return Padding(
+                                      padding: const EdgeInsets.all(4.0),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(8),
+                                        ),
+                                        child: CachedNetworkImage(
+                                          imageUrl: posterPath == ''
+                                              ? 'https://static.vecteezy.com/system/resources/thumbnails/005/073/059/small/empty-box-concept-illustration-flat-design-eps10-modern-graphic-element-for-landing-page-empty-state-ui-infographic-vector.jpg'
+                                              : 'https://image.tmdb.org/t/p/w500$posterPath',
+                                          placeholder: (context, url) => Center(
+                                            child: CircularProgressIndicator(),
+                                          ),
+                                          errorWidget: (context, url, error) =>
+                                              Icon(Icons.error),
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                            ),
+                            Text(
                               'Recommendations',
                               style: kHeading6,
                             ),

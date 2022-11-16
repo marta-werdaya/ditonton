@@ -105,4 +105,26 @@ void main() {
     expect(find.byType(AlertDialog), findsOneWidget);
     expect(find.text('Failed'), findsOneWidget);
   });
+
+  testWidgets(
+      'Should Display Cicular progress Indicator when Requesstate loading.',
+      (WidgetTester tester) async {
+    when(mockNotifier.movieState).thenReturn(RequestState.Loading);
+
+    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+
+    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+  });
+
+  testWidgets('Should Display Text With Error message.',
+      (WidgetTester tester) async {
+    when(mockNotifier.movieState).thenReturn(RequestState.Error);
+    when(mockNotifier.message).thenReturn('failed');
+
+    await tester.pumpWidget(_makeTestableWidget(MovieDetailPage(id: 1)));
+    await tester.pump(Duration(seconds: 2));
+
+    expect(find.byType(Text), findsOneWidget);
+    expect(find.text('failed'), findsOneWidget);
+  });
 }

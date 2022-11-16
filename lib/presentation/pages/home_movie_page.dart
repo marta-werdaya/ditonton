@@ -37,6 +37,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         title: Text('Ditonton'),
         actions: [
           IconButton(
+            key: Key('home'),
             onPressed: () {
               Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
             },
