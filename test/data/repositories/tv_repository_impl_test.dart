@@ -201,6 +201,8 @@ void main() {
           seasonNumber: 1,
         ),
       ],
+      numberOfSeason: 1,
+      numberOfEpisode: 1,
     );
 
     test(

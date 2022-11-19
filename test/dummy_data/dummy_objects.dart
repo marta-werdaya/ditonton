@@ -64,6 +64,8 @@ final testTvDetail = TvDetail(
       seasonNumber: 1,
     ),
   ],
+  numberOfSeason: 1,
+  numberOfEpisode: 1,
 );
 
 final testWatchlistMovie = Movie.watchlist(

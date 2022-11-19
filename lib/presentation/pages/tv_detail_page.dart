@@ -179,6 +179,12 @@ class DetailContent extends StatelessWidget {
                             Text(
                               tv.overview,
                             ),
+                            Text(
+                              'Jumlah Season : ${tv.numberOfSeason.toString()}',
+                            ),
+                            Text(
+                              'Jumlah Episode : ${tv.numberOfEpisode.toString()}',
+                            ),
                             SizedBox(height: 16),
                             Text(
                               'Season',
