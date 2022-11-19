@@ -46,7 +46,7 @@ class MovieCard<T> extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      (film is Tv) ? film.name : film.title ?? '',
+                      (T is Tv) ? film.name : film.title ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: kHeading6,

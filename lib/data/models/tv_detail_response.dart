@@ -56,8 +56,8 @@ class TvDetailResponse extends Equatable {
         voteCount: json["vote_count"],
         seasons: List<SeasonModel>.from(
             json['seasons'].map((x) => SeasonModel.fromJson(x))),
-        numberOfSeason: json["number_of_seasons"],
-        numberOfEpisode: json["number_of_episodes"],
+        numberOfSeason: json["number_of_seasons"] ?? 0,
+        numberOfEpisode: json["number_of_episodes"] ?? 0,
       );
 
   TvDetail toEntity() {
