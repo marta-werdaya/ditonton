@@ -10,7 +10,6 @@ class TvDetailResponse extends Equatable {
     required this.id,
     required this.originalName,
     required this.overview,
-    required this.popularity,
     required this.posterPath,
     required this.status,
     required this.name,
@@ -27,7 +26,6 @@ class TvDetailResponse extends Equatable {
   final int id;
   final String originalName;
   final String overview;
-  final double popularity;
   final String posterPath;
   final String status;
   final String name;
@@ -46,7 +44,6 @@ class TvDetailResponse extends Equatable {
         id: json["id"],
         originalName: json["original_name"],
         overview: json["overview"],
-        popularity: json["popularity"].toDouble(),
         posterPath: json["poster_path"],
         status: json["status"],
         name: json["name"],
@@ -85,14 +82,13 @@ class TvDetailResponse extends Equatable {
         id,
         originalName,
         overview,
-        popularity,
         posterPath,
-        status,
         name,
         runtime,
         voteAverage,
         voteCount,
         seasons,
+        status,
         numberOfSeason,
         numberOfEpisode,
       ];

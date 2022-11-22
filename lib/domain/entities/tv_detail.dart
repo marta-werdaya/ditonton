@@ -45,6 +45,7 @@ class TvDetail extends Equatable {
         runtime,
         voteAverage,
         voteCount,
+        seasons,
         numberOfSeason,
         numberOfEpisode,
       ];

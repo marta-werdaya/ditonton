@@ -19,7 +19,7 @@ import 'package:ditonton/data/datasources/tv_remote_data_source.dart' as _i20;
 import 'package:ditonton/data/models/movie_detail_model.dart' as _i3;
 import 'package:ditonton/data/models/movie_model.dart' as _i12;
 import 'package:ditonton/data/models/movie_table.dart' as _i14;
-import 'package:ditonton/data/models/tv_detail_response.dart' as _i4;
+import 'package:ditonton/data/models/tv_detail_model.dart' as _i4;
 import 'package:ditonton/data/models/tv_model.dart' as _i21;
 import 'package:ditonton/data/models/tv_table.dart' as _i23;
 import 'package:ditonton/domain/entities/movie.dart' as _i9;

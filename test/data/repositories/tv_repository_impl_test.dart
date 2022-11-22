@@ -5,7 +5,7 @@ import 'package:ditonton/data/models/genre_model.dart';
 import 'package:ditonton/common/exception.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/data/models/season_model.dart';
-import 'package:ditonton/data/models/tv_detail_response.dart';
+import 'package:ditonton/data/models/tv_detail_model.dart';
 import 'package:ditonton/data/models/tv_model.dart';
 import 'package:ditonton/data/repositories/tv_repository_impl.dart';
 import 'package:ditonton/domain/entities/tv.dart';
@@ -183,7 +183,6 @@ void main() {
       id: 1,
       originalName: 'originalName',
       overview: 'overview',
-      popularity: 1,
       posterPath: 'posterPath',
       runtime: 120,
       status: 'Status',
