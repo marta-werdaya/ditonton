@@ -25,7 +25,19 @@ final testMovie = Movie(
   voteCount: 13507,
 );
 
+final testTv = Tv(
+  backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
+  genreIds: [14, 28],
+  id: 557,
+  originalName: 'Spider-Man',
+  overview:
+      'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+  posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
+  name: 'Spider-Man',
+);
+
 final testMovieList = [testMovie];
+final testTvList = [testTv];
 
 final testMovieDetail = MovieDetail(
   adult: false,
