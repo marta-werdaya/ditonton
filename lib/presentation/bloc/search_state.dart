@@ -7,23 +7,47 @@ abstract class SearchState extends Equatable {
   List<Object> get props => [];
 }
 
-class SearchEmpty extends SearchState {}
+// Movie
+class SearchMovieEmpty extends SearchState {}
 
-class SearchLoading extends SearchState {}
+class SearchMovieLoading extends SearchState {}
 
-class SearchError extends SearchState {
+class SearchMovieError extends SearchState {
   final String message;
 
-  SearchError(this.message);
+  SearchMovieError(this.message);
 
   @override
   List<Object> get props => [message];
 }
 
-class SearchHasData extends SearchState {
+class SearchMovieLoaded extends SearchState {
   final List<Movie> result;
 
-  SearchHasData(this.result);
+  SearchMovieLoaded(this.result);
+
+  @override
+  List<Object> get props => [result];
+}
+
+// Tv
+class SearchTvEmpty extends SearchState {}
+
+class SearchTvLoading extends SearchState {}
+
+class SearchTvError extends SearchState {
+  final String message;
+
+  SearchTvError(this.message);
+
+  @override
+  List<Object> get props => [message];
+}
+
+class SearchTvLoaded extends SearchState {
+  final List<Tv> result;
+
+  SearchTvLoaded(this.result);
 
   @override
   List<Object> get props => [result];

@@ -1,13 +1,10 @@
 import 'package:ditonton/common/constants.dart';
-import 'package:ditonton/common/state_enum.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/tv.dart';
 import 'package:ditonton/presentation/bloc/search_bloc.dart';
-import 'package:ditonton/presentation/provider/tv_search_notifier.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';
@@ -29,15 +26,10 @@ class SearchPage extends StatelessWidget {
           children: [
             TextField(
               onChanged: (query) {
-                context.read<SearchBloc>().add(OnQueryChanged(query));
+                isMovie == true
+                    ? context.read<SearchBloc>().add(OnSearchMovie(query))
+                    : context.read<SearchBloc>().add(OnSearchTv(query));
               },
-              // onSubmitted: (query) {
-              //   isMovie == true
-              //       ? Provider.of<MovieSearchNotifier>(context, listen: false)
-              //           .fetchMovieSearch(query)
-              //       : Provider.of<TvSearchNotifier>(context, listen: false)
-              //           .fetchTvSearch(query);
-              // },
               decoration: InputDecoration(
                 hintText: 'Search title',
                 prefixIcon: Icon(Icons.search),
@@ -72,11 +64,11 @@ class ShowListSearch extends StatelessWidget {
     return isMovie
         ? BlocBuilder<SearchBloc, SearchState>(
             builder: (context, state) {
-              if (state is SearchLoading) {
+              if (state is SearchMovieLoading) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (state is SearchHasData) {
+              } else if (state is SearchMovieLoaded) {
                 final result = state.result;
                 return Expanded(
                   child: ListView.builder(
@@ -95,19 +87,19 @@ class ShowListSearch extends StatelessWidget {
               }
             },
           )
-        : Consumer<TvSearchNotifier>(
-            builder: (context, data, child) {
-              if (data.state == RequestState.Loading) {
+        : BlocBuilder<SearchBloc, SearchState>(
+            builder: (context, state) {
+              if (state is SearchTvLoading) {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-              } else if (data.state == RequestState.Loaded) {
-                final result = data.searchResult;
+              } else if (state is SearchTvLoaded) {
+                final result = state.result;
                 return Expanded(
                   child: ListView.builder(
                     padding: const EdgeInsets.all(8),
                     itemBuilder: (context, index) {
-                      final movie = data.searchResult[index];
+                      final movie = result[index];
                       return MovieCard<Tv>(movie);
                     },
                     itemCount: result.length,

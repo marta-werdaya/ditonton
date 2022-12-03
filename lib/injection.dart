@@ -49,7 +49,8 @@ void init() {
   // bloc
   locator.registerFactory(
     () => SearchBloc(
-      locator(),
+      searchMovies: locator(),
+      searchTvs: locator(),
     ),
   );
   // provider
