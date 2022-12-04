@@ -15,3 +15,12 @@ class OnGetMovieDetail extends MovieDetailEvent {
   @override
   List<Object> get props => [id];
 }
+
+class OnLoadWatchListStatus extends MovieDetailEvent {
+  final int id;
+
+  OnLoadWatchListStatus(this.id);
+
+  @override
+  List<Object> get props => [id];
+}
