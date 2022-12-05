@@ -1,10 +1,12 @@
 import 'package:ditonton/domain/entities/tv.dart';
+import 'package:ditonton/presentation/bloc/top_rated/top_rated_tv_bloc.dart';
 import 'package:ditonton/presentation/pages/now_playing_page.dart';
 import 'package:ditonton/presentation/pages/popular_tv_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
 import 'package:ditonton/presentation/pages/top_rated_tv_page.dart';
 import 'package:ditonton/presentation/widgets/custom_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 
 import '../../common/state_enum.dart';
@@ -24,10 +26,13 @@ class _TvPageState extends State<TvPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() => Provider.of<TvListNotifier>(context, listen: false)
-      ..fetchPopularTv()
-      ..fetchNowPlayingTv()
-      ..fetchTopRatedTv());
+    Future.microtask(() {
+      context.read<TopRatedTvBloc>().add(FetchTopRatedTvs());
+      Provider.of<TvListNotifier>(context, listen: false)
+        ..fetchPopularTv()
+        ..fetchNowPlayingTv()
+        ..fetchTopRatedTv();
+    });
   }
 
   @override
@@ -95,14 +100,14 @@ class _TvPageState extends State<TvPage> {
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedTvPage.ROUTE_NAME),
               ),
-              Consumer<TvListNotifier>(builder: (context, data, child) {
-                final state = data.topRatedState;
-                if (state == RequestState.Loading) {
+              BlocBuilder<TopRatedTvBloc, TopRatedTvState>(
+                  builder: (context, state) {
+                if (state is TopRatedTvLoading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
-                  return PosterList<Tv>(data.topRatedTv);
+                } else if (state is TopRatedTvLoaded) {
+                  return PosterList<Tv>(state.topRatedTvs);
                 } else {
                   return Text('Failed');
                 }

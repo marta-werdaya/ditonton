@@ -18,7 +18,6 @@ class TopRatedMovieBloc extends Bloc<TopRatedMovieEvent, TopRatedMovieState> {
       result.fold((failure) {
         emit(TopRatedMovieError(failure.message));
       }, (movies) {
-        print(movies);
         emit(TopRatedMovieLoaded(movies));
       });
     });

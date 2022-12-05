@@ -19,7 +19,6 @@ class NowPlayingMovieBloc
       result.fold((failure) {
         emit(NowPlayingError(failure.message));
       }, (movies) {
-        print(movies);
         emit(NowPlayingLoaded(movies));
       });
     });

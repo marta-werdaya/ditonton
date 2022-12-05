@@ -18,7 +18,6 @@ class PopularMovieBloc extends Bloc<PopularMovieEvent, PopularMovieState> {
       result.fold((failure) {
         emit(PopularMovieError(failure.message));
       }, (movies) {
-        print(movies);
         emit(PopularMovieLoaded(movies));
       });
     });

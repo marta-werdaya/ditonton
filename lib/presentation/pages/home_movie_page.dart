@@ -1,7 +1,7 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/presentation/bloc/now_playing/now_playing_movie_bloc.dart';
-import 'package:ditonton/presentation/bloc/popular_movie/popular_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/popular/popular_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/presentation/pages/search_page.dart';
@@ -27,10 +27,6 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         ..read<NowPlayingMovieBloc>().add(FetchNowPlayingMovies())
         ..read<PopularMovieBloc>().add(FetchPopularMovies())
         ..read<TopRatedMovieBloc>().add(FetchTopRatedMovies());
-      // Provider.of<MovieListNotifier>(context, listen: false)
-      //   ..fetchNowPlayingMovies()
-      //   ..fetchPopularMovies()
-      //   ..fetchTopRatedMovies();
     });
   }
 
@@ -67,7 +63,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is NowPlayingLoaded) {
-                  return PosterList<Movie>(state.popularMovies);
+                  return PosterList<Movie>(state.nowPlayingMovies);
                 } else {
                   return Text(state.toString());
                 }

@@ -24,9 +24,9 @@ class NowPlayingError extends NowPlayingMovieState {
 
 // Loaded state
 class NowPlayingLoaded extends NowPlayingMovieState {
-  final List<Movie> popularMovies;
+  final List<Movie> nowPlayingMovies;
 
-  NowPlayingLoaded(this.popularMovies);
+  NowPlayingLoaded(this.nowPlayingMovies);
   @override
-  List<Object> get props => [popularMovies];
+  List<Object> get props => [nowPlayingMovies];
 }
