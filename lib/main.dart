@@ -31,7 +31,6 @@ import 'package:ditonton/injection.dart' as di;
 
 import 'presentation/pages/popular_tv_page.dart';
 import 'presentation/pages/tv_detail_page.dart';
-import 'presentation/provider/tv_detail_notifier.dart';
 
 void main() {
   di.init();
@@ -43,9 +42,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => di.locator<TvDetailNotifier>(),
-        ),
         BlocProvider<SearchBloc>(
           create: (_) => di.locator<SearchBloc>(),
         ),

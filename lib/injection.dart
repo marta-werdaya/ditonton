@@ -44,7 +44,6 @@ import 'package:get_it/get_it.dart';
 
 import 'data/repositories/tv_repository_impl.dart';
 import 'domain/repositories/tv_repository.dart';
-import 'presentation/provider/tv_detail_notifier.dart';
 
 final locator = GetIt.instance;
 
@@ -126,17 +125,6 @@ void init() {
       getWatchListStatusTv: locator(),
       removeWatchlistTv: locator(),
       saveWatchlistTv: locator(),
-    ),
-  );
-  // provider
-
-  locator.registerFactory(
-    () => TvDetailNotifier(
-      getTvDetail: locator(),
-      getTvRecommendations: locator(),
-      getWatchListStatus: locator(),
-      saveWatchlist: locator(),
-      removeWatchlist: locator(),
     ),
   );
 
