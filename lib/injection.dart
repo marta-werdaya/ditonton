@@ -39,7 +39,6 @@ import 'package:ditonton/presentation/bloc/watchlist/list_watchlist_movie_bloc.d
 import 'package:ditonton/presentation/bloc/watchlist/list_watchlist_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/movie_watchlist_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/tv_watchlist_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
 import 'data/repositories/tv_repository_impl.dart';
@@ -179,5 +178,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelperTv>(() => DatabaseHelperTv());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  // locator.registerLazySingleton(() => http.Client());
 }

@@ -1,5 +1,6 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
+import 'package:ditonton/firebase_options.dart';
 import 'package:ditonton/presentation/bloc/detail/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/detail/tv_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/now_playing/now_playing_movie_bloc.dart';
@@ -28,12 +29,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
-
 import 'presentation/pages/popular_tv_page.dart';
 import 'presentation/pages/tv_detail_page.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
   di.init();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 
