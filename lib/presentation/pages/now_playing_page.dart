@@ -29,11 +29,11 @@ class _PopularMoviesPageState extends State<NowPlayingTvPage> {
         padding: const EdgeInsets.all(8.0),
         child: BlocBuilder<NowPlayingTvBloc, NowPlayingTvState>(
           builder: (context, state) {
-            if (state is NowPlayingLoading) {
+            if (state is NowPlayingTvLoading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is NowPlayingLoaded) {
+            } else if (state is NowPlayingTvLoaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tv = state.nowPlayingTvs[index];
@@ -44,7 +44,7 @@ class _PopularMoviesPageState extends State<NowPlayingTvPage> {
             } else {
               return Center(
                 key: Key('error_message'),
-                child: Text('gagal dimuat'),
+                child: Text((state as NowPlayingTvError).message),
               );
             }
           },

@@ -8,10 +8,10 @@ abstract class NowPlayingTvState extends Equatable {
 }
 
 // empty state
-class NowPlayingEmpty extends NowPlayingTvState {}
+class NowPlayingTvEmpty extends NowPlayingTvState {}
 
 // Loading state
-class NowPlayingLoading extends NowPlayingTvState {}
+class NowPlayingTvLoading extends NowPlayingTvState {}
 
 // Error state
 class NowPlayingTvError extends NowPlayingTvState {
@@ -23,10 +23,10 @@ class NowPlayingTvError extends NowPlayingTvState {
 }
 
 // Loaded state
-class NowPlayingLoaded extends NowPlayingTvState {
+class NowPlayingTvLoaded extends NowPlayingTvState {
   final List<Tv> nowPlayingTvs;
 
-  NowPlayingLoaded(this.nowPlayingTvs);
+  NowPlayingTvLoaded(this.nowPlayingTvs);
   @override
   List<Object> get props => [nowPlayingTvs];
 }

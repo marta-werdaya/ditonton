@@ -2,7 +2,7 @@ import 'package:ditonton/presentation/pages/tv_page.dart';
 import 'package:flutter/material.dart';
 
 import '../pages/about_page.dart';
-import '../pages/watchlist_movies_page.dart';
+import '../pages/watchlist_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   const CustomDrawer({
