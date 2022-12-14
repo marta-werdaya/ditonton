@@ -33,7 +33,7 @@ class MovieWatchlistBloc
 
       await result.fold(
         (failure) async {
-          emit(MovieWatchlistLoaded(message: failure.message, status: true));
+          emit(MovieWatchlistError(failure.message));
         },
         (successMessage) async {
           emit(MovieWatchlistLoaded(message: successMessage, status: false));
@@ -47,7 +47,7 @@ class MovieWatchlistBloc
 
       await result.fold(
         (failure) async {
-          emit(MovieWatchlistLoaded(message: failure.message, status: false));
+          emit(MovieWatchlistError(failure.message));
         },
         (successMessage) async {
           emit(MovieWatchlistLoaded(message: successMessage, status: true));
