@@ -22,7 +22,7 @@ class Shared {
             .buffer
             .asUint8List();
       }
-      log('bytes $bytes');
+      // log('bytes $bytes');
       context.setTrustedCertificatesBytes(bytes);
       log('createHttpClient() - cert added!');
     } on TlsException catch (e) {

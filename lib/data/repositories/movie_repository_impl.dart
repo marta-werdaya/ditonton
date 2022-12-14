@@ -27,9 +27,9 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on TlsException catch (e) {
-      return Left(ConnectionFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(ConnectionFailure(e.toString()));
+      return Left(CertificateFailure('Certificated not valid\n${e.message}'));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -41,9 +41,9 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on TlsException catch (e) {
-      return Left(ConnectionFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(ConnectionFailure(e.toString()));
+      return Left(CertificateFailure('Certificated not valid\n${e.message}'));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -55,9 +55,9 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on TlsException catch (e) {
-      return Left(ConnectionFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(ConnectionFailure(e.toString()));
+      return Left(CertificateFailure('Certificated not valid\n${e.message}'));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -69,9 +69,9 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on TlsException catch (e) {
-      return Left(ConnectionFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(ConnectionFailure(e.toString()));
+      return Left(CertificateFailure('Certificated not valid\n${e.message}'));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -83,9 +83,9 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on TlsException catch (e) {
-      return Left(ConnectionFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(ConnectionFailure(e.toString()));
+      return Left(CertificateFailure('Certificated not valid\n${e.message}'));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 
@@ -97,9 +97,9 @@ class MovieRepositoryImpl implements MovieRepository {
     } on ServerException {
       return Left(ServerFailure(''));
     } on TlsException catch (e) {
-      return Left(ConnectionFailure('Certificated not valid\n${e.message}'));
-    } catch (e) {
-      return Left(ConnectionFailure(e.toString()));
+      return Left(CertificateFailure('Certificated not valid\n${e.message}'));
+    } on SocketException {
+      return Left(ConnectionFailure('Failed to connect to the network'));
     }
   }
 

@@ -38,11 +38,11 @@ import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
   di.init();
-  await HttpSSLPinning.init();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await HttpSSLPinning.init();
   runApp(MyApp());
 }
 

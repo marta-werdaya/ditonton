@@ -80,7 +80,7 @@ void main() {
       expect(
           result.toString(),
           equals(
-              Left(ConnectionFailure('Certificated not valid\n')).toString()));
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
     });
     test(
         'should return remote data when the call to remote data source is successful',
@@ -115,7 +115,7 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getNowPlayingMovies())
-          .thenThrow(ConnectionFailure('Failed to connect to the network'));
+          .thenThrow(SocketException('Failed to connect to the network'));
       // act
       final result = await repository.getNowPlayingMovies();
       // assert
@@ -141,7 +141,7 @@ void main() {
       expect(
           result.toString(),
           equals(
-              Left(ConnectionFailure('Certificated not valid\n')).toString()));
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
     });
     test('should return movie list when call to data source is success',
         () async {
@@ -199,7 +199,7 @@ void main() {
       expect(
           result.toString(),
           equals(
-              Left(ConnectionFailure('Certificated not valid\n')).toString()));
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
     });
     test('should return movie list when call to data source is successful',
         () async {
@@ -303,10 +303,8 @@ void main() {
       final result = await repository.getMovieDetail(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(
-          result.toString(),
-          equals(Left(ConnectionFailure('Failed to connect to the network')))
-              .toString());
+      expect(result,
+          equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
   });
 
@@ -351,10 +349,8 @@ void main() {
       final result = await repository.getMovieRecommendations(tId);
       // assert
       verify(mockRemoteDataSource.getMovieRecommendations(tId));
-      expect(
-          result.toString(),
-          equals(Left(ConnectionFailure('Failed to connect to the network')))
-              .toString());
+      expect(result,
+          equals(Left(ConnectionFailure('Failed to connect to the network'))));
     });
   });
 
