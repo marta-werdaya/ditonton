@@ -52,8 +52,10 @@ class _MovieDetailPageState extends State<TvDetailPage> {
                       stateWatchlistTv.status,
                     );
                   } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return DetailContent(
+                      tv,
+                      state.tvRecomendation,
+                      false,
                     );
                   }
                 },
@@ -135,14 +137,12 @@ class DetailContent extends StatelessWidget {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
                                               content: Text(state.message)));
-                                    } else {
+                                    } else if (state is TvWatchlistError) {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
                                             return AlertDialog(
-                                              content: Text(
-                                                  (state as TvWatchlistLoaded)
-                                                      .message),
+                                              content: Text((state.message)),
                                             );
                                           });
                                     }

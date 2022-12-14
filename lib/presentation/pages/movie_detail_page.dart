@@ -44,15 +44,16 @@ class _MovieDetailPageState extends State<MovieDetailPage> {
               child: BlocBuilder<MovieWatchlistBloc, MovieWatchlistState>(
                 builder: (context, stateWatchlist) {
                   if (stateWatchlist is MovieWatchlistLoaded) {
-                    debugPrint(stateWatchlist.status.toString());
                     return DetailContent(
                       state.movie,
                       state.movieRecomendation,
                       stateWatchlist.status,
                     );
                   } else {
-                    return Center(
-                      child: CircularProgressIndicator(),
+                    return DetailContent(
+                      state.movie,
+                      state.movieRecomendation,
+                      false,
                     );
                   }
                 },
@@ -140,14 +141,12 @@ class DetailContent extends StatelessWidget {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
                                               content: Text(state.message)));
-                                    } else {
+                                    } else if (state is MovieWatchlistError) {
                                       showDialog(
                                           context: context,
                                           builder: (context) {
                                             return AlertDialog(
-                                              content: Text((state
-                                                      as MovieWatchlistLoaded)
-                                                  .message),
+                                              content: Text((state.message)),
                                             );
                                           });
                                     }

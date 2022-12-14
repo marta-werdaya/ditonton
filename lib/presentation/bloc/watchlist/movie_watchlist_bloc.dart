@@ -24,7 +24,7 @@ class MovieWatchlistBloc
       emit(MovieWatchlistLoaded(
           status: status,
           message:
-              status == true ? 'Remove From Watclist' : 'Added To Watclist'));
+              status == true ? 'Remove From Watchlist' : 'Added To Watchlist'));
     });
 
     on<OnRemoveWatchList>((event, emit) async {

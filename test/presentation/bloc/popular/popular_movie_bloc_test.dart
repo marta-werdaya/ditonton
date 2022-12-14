@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
+import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/usecases/get_popular_movies.dart';
 import 'package:ditonton/presentation/bloc/popular/popular_movie_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -34,6 +35,23 @@ void main() {
     expect: () => [
       PopularMovieLoading(),
       PopularMovieLoaded(testMovieList),
+    ],
+    verify: (bloc) {
+      verify(mockGetPopularMovies.execute());
+    },
+  );
+  blocTest<PopularMovieBloc, PopularMovieState>(
+    'Should emit [Error] when data is failed',
+    build: () {
+      when(mockGetPopularMovies.execute())
+          .thenAnswer((_) async => Left(ConnectionFailure('failed')));
+      return popularMovieBloc;
+    },
+    act: (bloc) => bloc.add(FetchPopularMovies()),
+    wait: const Duration(milliseconds: 500),
+    expect: () => [
+      PopularMovieLoading(),
+      PopularMovieError('failed'),
     ],
     verify: (bloc) {
       verify(mockGetPopularMovies.execute());

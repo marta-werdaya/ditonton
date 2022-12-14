@@ -29,8 +29,12 @@ class SearchPage extends StatelessWidget {
             TextField(
               onChanged: (query) {
                 isMovie == true
-                    ? context.read<SearchMovieBloc>().add(OnSearchMovie(query))
-                    : context.read<SearchTvBloc>().add(OnSearchTv(query));
+                    ? context
+                        .read<SearchMovieBloc>()
+                        .add(OnSearchMovie(query: query))
+                    : context
+                        .read<SearchTvBloc>()
+                        .add(OnSearchTv(query: query));
               },
               decoration: InputDecoration(
                 hintText: 'Search title',

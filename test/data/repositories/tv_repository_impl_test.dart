@@ -56,6 +56,21 @@ void main() {
 
   group('Now Playing Tvs', () {
     test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getNowPlayingTvs()).thenThrow((TlsException()));
+      // act
+      final result = await repository.getNowPlayingTv();
+      // assert
+      verify(mockRemoteDataSource.getNowPlayingTvs());
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
+    });
+    test(
         'should return remote data when the call to remote data source is successful',
         () async {
       // arrange
@@ -99,6 +114,21 @@ void main() {
   });
 
   group('Popular Movies', () {
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularTv()).thenThrow((TlsException()));
+      // act
+      final result = await repository.getPopularTv();
+      // assert
+      verify(mockRemoteDataSource.getPopularTv());
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
+    });
     test(
         'should return remote data when the call to remote data source is successful',
         () async {
@@ -152,6 +182,21 @@ void main() {
   });
 
   group('Top Rated Tv', () {
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTopRatedTv()).thenThrow((TlsException()));
+      // act
+      final result = await repository.getTopRatedTv();
+      // assert
+      verify(mockRemoteDataSource.getTopRatedTv());
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
+    });
     test(
         'should return remote data when the call to remote data source is successful',
         () async {
