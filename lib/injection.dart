@@ -32,16 +32,16 @@ import 'package:ditonton/presentation/bloc/now_playing/now_playing_movie_bloc.da
 import 'package:ditonton/presentation/bloc/now_playing/now_playing_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/popular/popular_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/popular/popular_tv_bloc.dart';
-import 'package:ditonton/presentation/bloc/search_bloc.dart';
+import 'package:ditonton/presentation/bloc/search/search_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/search/search_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated/top_rated_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/list_watchlist_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/list_watchlist_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/movie_watchlist_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/tv_watchlist_bloc.dart';
-import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
-
+import 'common/http_ssl_pinning.dart';
 import 'data/repositories/tv_repository_impl.dart';
 import 'domain/repositories/tv_repository.dart';
 
@@ -50,8 +50,12 @@ final locator = GetIt.instance;
 void init() {
   // bloc
   locator.registerFactory(
-    () => SearchBloc(
+    () => SearchMovieBloc(
       searchMovies: locator(),
+    ),
+  );
+  locator.registerFactory(
+    () => SearchTvBloc(
       searchTvs: locator(),
     ),
   );
@@ -166,11 +170,11 @@ void init() {
 
   // data sources
   locator.registerLazySingleton<MovieRemoteDataSource>(
-      () => MovieRemoteDataSourceImpl());
+      () => MovieRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<MovieLocalDataSource>(
       () => MovieLocalDataSourceImpl(databaseHelper: locator()));
   locator.registerLazySingleton<TvRemoteDataSource>(
-      () => TvRemoteDataSourceImpl());
+      () => TvRemoteDataSourceImpl(client: locator()));
   locator.registerLazySingleton<TvLocalDataSource>(
       () => TvLocalDataSourceImpl(databaseHelper: locator()));
 
@@ -179,5 +183,5 @@ void init() {
   locator.registerLazySingleton<DatabaseHelperTv>(() => DatabaseHelperTv());
 
   // external
-  locator.registerLazySingleton(() => http.Client());
+  locator.registerLazySingleton(() => HttpSSLPinning.client);
 }

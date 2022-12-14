@@ -99,6 +99,20 @@ void main() {
   });
 
   group('Popular Movies', () {
+    test(
+        'should return remote data when the call to remote data source is successful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularTv())
+          .thenAnswer((_) async => tTvModelList);
+      // act
+      final result = await repository.getPopularTv();
+      // assert
+      verify(mockRemoteDataSource.getPopularTv());
+      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, tTvList);
+    });
     test('should return movie list when call to data source is success',
         () async {
       // arrange
@@ -138,6 +152,20 @@ void main() {
   });
 
   group('Top Rated Tv', () {
+    test(
+        'should return remote data when the call to remote data source is successful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTopRatedTv())
+          .thenAnswer((_) async => tTvModelList);
+      // act
+      final result = await repository.getTopRatedTv();
+      // assert
+      verify(mockRemoteDataSource.getTopRatedTv());
+      /* workaround to test List in Right. Issue: https://github.com/spebbe/dartz/issues/80 */
+      final resultList = result.getOrElse(() => []);
+      expect(resultList, tTvList);
+    });
     test('should return movie list when call to data source is successful',
         () async {
       // arrange

@@ -67,6 +67,22 @@ void main() {
 
   group('Now Playing Movies', () {
     test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getNowPlayingMovies())
+          .thenThrow((TlsException()));
+      // act
+      final result = await repository.getNowPlayingMovies();
+      // assert
+      verify(mockRemoteDataSource.getNowPlayingMovies());
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(ConnectionFailure('Certificated not valid\n')).toString()));
+    });
+    test(
         'should return remote data when the call to remote data source is successful',
         () async {
       // arrange
@@ -99,17 +115,34 @@ void main() {
         () async {
       // arrange
       when(mockRemoteDataSource.getNowPlayingMovies())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(ConnectionFailure('Failed to connect to the network'));
       // act
       final result = await repository.getNowPlayingMovies();
       // assert
       verify(mockRemoteDataSource.getNowPlayingMovies());
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(
+        result,
+        equals(Left(ConnectionFailure('Failed to connect to the network'))),
+      );
     });
   });
 
   group('Popular Movies', () {
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getPopularMovies()).thenThrow((TlsException()));
+      // act
+      final result = await repository.getPopularMovies();
+      // assert
+      verify(mockRemoteDataSource.getPopularMovies());
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(ConnectionFailure('Certificated not valid\n')).toString()));
+    });
     test('should return movie list when call to data source is success',
         () async {
       // arrange
@@ -145,11 +178,29 @@ void main() {
       final result = await repository.getPopularMovies();
       // assert
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result.toString(),
+          Left(ConnectionFailure('Failed to connect to the network'))
+              .toString());
     });
   });
 
   group('Top Rated Movies', () {
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTopRatedMovies())
+          .thenThrow((TlsException()));
+      // act
+      final result = await repository.getTopRatedMovies();
+      // assert
+      verify(mockRemoteDataSource.getTopRatedMovies());
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(ConnectionFailure('Certificated not valid\n')).toString()));
+    });
     test('should return movie list when call to data source is successful',
         () async {
       // arrange
@@ -184,7 +235,9 @@ void main() {
       final result = await repository.getTopRatedMovies();
       // assert
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result.toString(),
+          Left(ConnectionFailure('Failed to connect to the network'))
+              .toString());
     });
   });
 
@@ -250,8 +303,10 @@ void main() {
       final result = await repository.getMovieDetail(tId);
       // assert
       verify(mockRemoteDataSource.getMovieDetail(tId));
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(
+          result.toString(),
+          equals(Left(ConnectionFailure('Failed to connect to the network')))
+              .toString());
     });
   });
 
@@ -296,8 +351,10 @@ void main() {
       final result = await repository.getMovieRecommendations(tId);
       // assert
       verify(mockRemoteDataSource.getMovieRecommendations(tId));
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(
+          result.toString(),
+          equals(Left(ConnectionFailure('Failed to connect to the network')))
+              .toString());
     });
   });
 
@@ -338,7 +395,9 @@ void main() {
       final result = await repository.searchMovies(tQuery);
       // assert
       expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+          result.toString(),
+          Left(ConnectionFailure('Failed to connect to the network'))
+              .toString());
     });
   });
 

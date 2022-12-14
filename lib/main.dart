@@ -6,7 +6,8 @@ import 'package:ditonton/presentation/bloc/now_playing/now_playing_movie_bloc.da
 import 'package:ditonton/presentation/bloc/now_playing/now_playing_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/popular/popular_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/popular/popular_tv_bloc.dart';
-import 'package:ditonton/presentation/bloc/search_bloc.dart';
+import 'package:ditonton/presentation/bloc/search/search_movie_bloc.dart';
+import 'package:ditonton/presentation/bloc/search/search_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated/top_rated_movie_bloc.dart';
 import 'package:ditonton/presentation/bloc/top_rated/top_rated_tv_bloc.dart';
 import 'package:ditonton/presentation/bloc/watchlist/list_watchlist_movie_bloc.dart';
@@ -29,11 +30,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/injection.dart' as di;
 
+import 'common/http_ssl_pinning.dart';
 import 'presentation/pages/popular_tv_page.dart';
 import 'presentation/pages/tv_detail_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   di.init();
+  await HttpSSLPinning.init();
   runApp(MyApp());
 }
 
@@ -42,8 +46,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        BlocProvider<SearchBloc>(
-          create: (_) => di.locator<SearchBloc>(),
+        BlocProvider<SearchMovieBloc>(
+          create: (_) => di.locator<SearchMovieBloc>(),
+        ),
+        BlocProvider<SearchTvBloc>(
+          create: (_) => di.locator<SearchTvBloc>(),
         ),
         BlocProvider<MovieDetailBloc>(
           create: (_) => di.locator<MovieDetailBloc>(),

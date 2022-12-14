@@ -1,10 +1,12 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/domain/entities/movie.dart';
 import 'package:ditonton/domain/entities/tv.dart';
-import 'package:ditonton/presentation/bloc/search_bloc.dart';
 import 'package:ditonton/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/search/search_movie_bloc.dart';
+import '../bloc/search/search_tv_bloc.dart';
 
 class SearchPage extends StatelessWidget {
   static const ROUTE_NAME = '/search';
@@ -27,8 +29,8 @@ class SearchPage extends StatelessWidget {
             TextField(
               onChanged: (query) {
                 isMovie == true
-                    ? context.read<SearchBloc>().add(OnSearchMovie(query))
-                    : context.read<SearchBloc>().add(OnSearchTv(query));
+                    ? context.read<SearchMovieBloc>().add(OnSearchMovie(query))
+                    : context.read<SearchTvBloc>().add(OnSearchTv(query));
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
@@ -62,7 +64,7 @@ class ShowListSearch extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isMovie
-        ? BlocBuilder<SearchBloc, SearchState>(
+        ? BlocBuilder<SearchMovieBloc, SearchMovieState>(
             builder: (context, state) {
               if (state is SearchMovieLoading) {
                 return Center(
@@ -87,7 +89,7 @@ class ShowListSearch extends StatelessWidget {
               }
             },
           )
-        : BlocBuilder<SearchBloc, SearchState>(
+        : BlocBuilder<SearchTvBloc, SearchTvState>(
             builder: (context, state) {
               if (state is SearchTvLoading) {
                 return Center(
