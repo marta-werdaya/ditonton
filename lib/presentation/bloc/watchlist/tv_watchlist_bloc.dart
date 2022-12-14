@@ -24,7 +24,7 @@ class TvWatchlistBloc extends Bloc<TvWatchlistEvent, TvWatchlistState> {
       emit(TvWatchlistLoaded(
           status: status,
           message:
-              status == true ? 'Remove From Watclist' : 'Added To Watclist'));
+              status == true ? 'Remove From Watchlist' : 'Added To Watclist'));
     });
 
     on<OnRemoveWatchListTv>((event, emit) async {
@@ -33,7 +33,7 @@ class TvWatchlistBloc extends Bloc<TvWatchlistEvent, TvWatchlistState> {
 
       await result.fold(
         (failure) async {
-          emit(TvWatchlistLoaded(message: failure.message, status: true));
+          emit(TvWatchlistError(failure.message));
         },
         (successMessage) async {
           emit(TvWatchlistLoaded(message: successMessage, status: false));
@@ -47,7 +47,7 @@ class TvWatchlistBloc extends Bloc<TvWatchlistEvent, TvWatchlistState> {
 
       await result.fold(
         (failure) async {
-          emit(TvWatchlistLoaded(message: failure.message, status: false));
+          emit(TvWatchlistError(failure.message));
         },
         (successMessage) async {
           emit(TvWatchlistLoaded(message: successMessage, status: true));

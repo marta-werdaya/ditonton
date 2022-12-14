@@ -276,7 +276,21 @@ void main() {
       numberOfSeason: 1,
       numberOfEpisode: 1,
     );
-
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvDetail(tId)).thenThrow((TlsException()));
+      // act
+      final result = await repository.getTvDetail(tId);
+      // assert
+      verify(mockRemoteDataSource.getTvDetail(tId));
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
+    });
     test(
         'should return Tv data when the call to remote data source is successful',
         () async {
@@ -320,7 +334,22 @@ void main() {
   group('Get Tv Recommendations', () {
     final tTvList = <TvModel>[];
     final tId = 1;
-
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.getTvRecommendations(tId))
+          .thenThrow((TlsException()));
+      // act
+      final result = await repository.getTvRecommendations(tId);
+      // assert
+      verify(mockRemoteDataSource.getTvRecommendations(tId));
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
+    });
     test('should return data (movie list) when the call is successful',
         () async {
       // arrange
@@ -365,7 +394,21 @@ void main() {
 
   group('Seach Tv', () {
     final tQuery = 'spiderman';
-
+    test(
+        'should return Certification Failure when the call to remote data source is unsuccessful',
+        () async {
+      // arrange
+      when(mockRemoteDataSource.searchTv(tQuery)).thenThrow((TlsException()));
+      // act
+      final result = await repository.searchTv(tQuery);
+      // assert
+      verify(mockRemoteDataSource.searchTv(tQuery));
+      // final failed = Left<Failure, List<Movie>>))
+      expect(
+          result.toString(),
+          equals(
+              Left(CertificateFailure('Certificated not valid\n')).toString()));
+    });
     test('should return movie list when call to data source is successful',
         () async {
       // arrange
